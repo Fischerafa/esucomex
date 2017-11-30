@@ -29,4 +29,8 @@ public class HomeController {
         Proveedor proveedor = proveedorRepo.findOne(BigDecimal.ONE);
         return proveedor.getRazonSocial();
     }
+    
+    public void nada() {
+        System.out.println("nada");
+    }
 }
