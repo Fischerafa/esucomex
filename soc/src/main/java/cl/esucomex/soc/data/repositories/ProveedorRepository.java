@@ -6,13 +6,12 @@
 package cl.esucomex.soc.data.repositories;
 
 import cl.esucomex.soc.data.entities.Proveedor;
-import java.math.BigDecimal;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author richa
  */
-public interface ProveedorRepository extends JpaRepository<Proveedor, BigDecimal> {
+public interface ProveedorRepository extends JpaRepository<Proveedor, Long> {
     
 }

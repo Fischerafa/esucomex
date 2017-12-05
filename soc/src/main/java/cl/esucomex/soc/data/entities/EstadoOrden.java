@@ -39,7 +39,7 @@ public class EstadoOrden implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
-    private Short id;
+    private Long id;
     @Size(max = 50)
     @Column(name = "DESCRIPCION")
     private String descripcion;
@@ -49,15 +49,15 @@ public class EstadoOrden implements Serializable {
     public EstadoOrden() {
     }
 
-    public EstadoOrden(Short id) {
+    public EstadoOrden(Long id) {
         this.id = id;
     }
 
-    public Short getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

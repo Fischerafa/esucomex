@@ -6,17 +6,18 @@
 package cl.esucomex.soc.data.entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,14 +39,16 @@ public class OrdenCompraDetalle implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="OrdenCompraDetalleSeq")
+    @SequenceGenerator(name="OrdenCompraDetalleSeq", sequenceName="ORDEN_COMPRA_DETALLE_SEQ", allocationSize=1)
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
-    private BigDecimal id;
+    private Long id;
     @Column(name = "CANTIDAD")
     private Integer cantidad;
     @Column(name = "PRECIO")
-    private BigInteger precio;
+    private Float precio;
     @JoinColumn(name = "ORDEN_ID", referencedColumnName = "ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private OrdenCompra ordenCompra;
@@ -56,15 +59,15 @@ public class OrdenCompraDetalle implements Serializable {
     public OrdenCompraDetalle() {
     }
 
-    public OrdenCompraDetalle(BigDecimal id) {
+    public OrdenCompraDetalle(Long id) {
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -76,11 +79,11 @@ public class OrdenCompraDetalle implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public BigInteger getPrecio() {
+    public Float getPrecio() {
         return precio;
     }
 
-    public void setPrecio(BigInteger precio) {
+    public void setPrecio(Float precio) {
         this.precio = precio;
     }
 

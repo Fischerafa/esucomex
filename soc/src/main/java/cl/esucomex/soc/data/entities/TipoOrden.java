@@ -11,10 +11,13 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -37,10 +40,12 @@ public class TipoOrden implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TipoOrdenSeq")
+    @SequenceGenerator(name="TipoOrdenSeq", sequenceName="TIPO_ORDEN_SEQ", allocationSize=1)
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
-    private Short id;
+    private Long id;
     @Size(max = 50)
     @Column(name = "DESCRIPCION")
     private String descripcion;
@@ -52,15 +57,15 @@ public class TipoOrden implements Serializable {
     public TipoOrden() {
     }
 
-    public TipoOrden(Short id) {
+    public TipoOrden(Long id) {
         this.id = id;
     }
 
-    public Short getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

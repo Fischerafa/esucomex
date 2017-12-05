@@ -15,7 +15,7 @@
 
     <jpa:repositories base-package="cl.esucomex.soc.data.repositories"/>
     
-    <trx:annotation-driven />
+    <trx:annotation-driven  />
     <trx:jta-transaction-manager />
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

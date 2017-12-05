@@ -20,17 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class HomeController {
-    @Autowired
-    ProveedorRepository proveedorRepo;
-    
     @RequestMapping(value="/", method=RequestMethod.GET)
     @ResponseBody
     public String getHome() {
-        Proveedor proveedor = proveedorRepo.findOne(BigDecimal.ONE);
-        return proveedor.getRazonSocial();
-    }
-    
-    public void nada() {
-        System.out.println("nada");
+        return "<h1>Este sera el home del sitio</h1>";
     }
 }

@@ -6,20 +6,21 @@
 package cl.esucomex.soc.data.entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -47,10 +48,12 @@ public class OrdenCompra implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="OrdenCompraSeq")
+    @SequenceGenerator(name="OrdenCompraSeq", sequenceName="ORDEN_COMPRA_SEQ", allocationSize=1)
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
-    private BigDecimal id;
+    private Long id;
     @Column(name = "FECHA_EMISION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEmision;
@@ -61,9 +64,9 @@ public class OrdenCompra implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaVencimiento;
     @Column(name = "TOTAL_CANTIDAD")
-    private BigInteger totalCantidad;
+    private Integer totalCantidad;
     @Column(name = "TOTAL_PRECIO")
-    private BigInteger totalPrecio;
+    private Integer totalPrecio;
     @JoinColumn(name = "ESTADO_ID", referencedColumnName = "ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private EstadoOrden estadoOrden;
@@ -79,15 +82,15 @@ public class OrdenCompra implements Serializable {
     public OrdenCompra() {
     }
 
-    public OrdenCompra(BigDecimal id) {
+    public OrdenCompra(Long id) {
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -115,19 +118,19 @@ public class OrdenCompra implements Serializable {
         this.fechaVencimiento = fechaVencimiento;
     }
 
-    public BigInteger getTotalCantidad() {
+    public Integer getTotalCantidad() {
         return totalCantidad;
     }
 
-    public void setTotalCantidad(BigInteger totalCantidad) {
+    public void setTotalCantidad(Integer totalCantidad) {
         this.totalCantidad = totalCantidad;
     }
 
-    public BigInteger getTotalPrecio() {
+    public Integer getTotalPrecio() {
         return totalPrecio;
     }
 
-    public void setTotalPrecio(BigInteger totalPrecio) {
+    public void setTotalPrecio(Integer totalPrecio) {
         this.totalPrecio = totalPrecio;
     }
 
