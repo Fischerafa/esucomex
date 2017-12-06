@@ -28,7 +28,7 @@ public class ProveedorMapper {
         this.razonSocial = proveedor.getRazonSocial();
     }
     
-    public Proveedor getProveedor() {
+    public Proveedor obtenerProveedor() {
         Proveedor proveedor = new Proveedor();
         proveedor.setId(id);
         proveedor.setRazonSocial(razonSocial);

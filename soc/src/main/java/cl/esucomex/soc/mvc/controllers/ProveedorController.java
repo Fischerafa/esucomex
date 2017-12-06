@@ -54,14 +54,14 @@ public class ProveedorController {
     @RequestMapping(method=RequestMethod.POST)
     public Map<String, Object> create(@RequestBody ProveedorMapper proveedor){
         List<ProveedorMapper> respuesta = new ArrayList<>();
-        respuesta.add(new ProveedorMapper(proveedorRepo.saveAndFlush(proveedor.getProveedor())));
+        respuesta.add(new ProveedorMapper(proveedorRepo.saveAndFlush(proveedor.obtenerProveedor())));
         return Wrapper.ok(respuesta, 1L);
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     public Map<String, Object> edit(@PathVariable Long id, @RequestBody ProveedorMapper proveedor) {
         List<ProveedorMapper> respuesta = new ArrayList<>();
-        respuesta.add(new ProveedorMapper(proveedorRepo.saveAndFlush(proveedor.getProveedor())));
+        respuesta.add(new ProveedorMapper(proveedorRepo.saveAndFlush(proveedor.obtenerProveedor())));
         return Wrapper.ok(respuesta, 1L);
     }
     
