@@ -63,9 +63,14 @@ public class ProductoController {
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     @Transactional
     public Map<String, Object> edit(@PathVariable Long id, @RequestBody ProductoMapper producto) {
-        List<ProductoMapper> respuesta = new ArrayList<>();
-        respuesta.add(new ProductoMapper(productoRepo.saveAndFlush(producto.obtenerProducto())));
-        return Wrapper.ok(respuesta, 1L);
+        if (productoRepo.findOne(id) != null) {
+            List<ProductoMapper> respuesta = new ArrayList<>();
+            respuesta.add(new ProductoMapper(productoRepo.saveAndFlush(producto.obtenerProducto())));
+            return Wrapper.ok(respuesta, 1L);
+        }
+        else {
+            return Wrapper.error("El producto " + id + " no existe");
+        }
     }
     
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)

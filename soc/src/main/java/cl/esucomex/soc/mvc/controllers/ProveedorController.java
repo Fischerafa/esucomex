@@ -63,9 +63,14 @@ public class ProveedorController {
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     @Transactional
     public Map<String, Object> edit(@PathVariable Long id, @RequestBody ProveedorMapper proveedor) {
-        List<ProveedorMapper> respuesta = new ArrayList<>();
-        respuesta.add(new ProveedorMapper(proveedorRepo.saveAndFlush(proveedor.obtenerProveedor())));
-        return Wrapper.ok(respuesta, 1L);
+        if (proveedorRepo.findOne(id) != null) {
+            List<ProveedorMapper> respuesta = new ArrayList<>();
+            respuesta.add(new ProveedorMapper(proveedorRepo.saveAndFlush(proveedor.obtenerProveedor())));
+            return Wrapper.ok(respuesta, 1L);
+        }
+        else {
+            return Wrapper.error("El proveedor " + id + " no existe");
+        }
     }
     
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
