@@ -7,6 +7,9 @@
     <jta-data-source>java:app/jdbc/socDB</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
-    <properties/>
+    <properties>
+        <property name="eclipselink.target-database" value="Oracle"/>
+        <property name="eclipselink.target-server" value="SunAS9" />
+    </properties>
   </persistence-unit>
 </persistence>

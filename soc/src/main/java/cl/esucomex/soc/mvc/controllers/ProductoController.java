@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +53,7 @@ public class ProductoController {
     }
 
     @RequestMapping(method=RequestMethod.POST)
+    @Transactional
     public Map<String, Object> create(@RequestBody ProductoMapper producto){
         List<ProductoMapper> respuesta = new ArrayList<>();
         respuesta.add(new ProductoMapper(productoRepo.saveAndFlush(producto.obtenerProducto())));
@@ -59,6 +61,7 @@ public class ProductoController {
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
+    @Transactional
     public Map<String, Object> edit(@PathVariable Long id, @RequestBody ProductoMapper producto) {
         List<ProductoMapper> respuesta = new ArrayList<>();
         respuesta.add(new ProductoMapper(productoRepo.saveAndFlush(producto.obtenerProducto())));
@@ -66,6 +69,7 @@ public class ProductoController {
     }
     
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+    @Transactional
     public Map<String, Object> delete(@PathVariable Long id) {
         Producto producto =  productoRepo.findOne(id);
         if (producto != null) {
